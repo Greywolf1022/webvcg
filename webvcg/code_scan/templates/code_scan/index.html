@@ -1,0 +1,33 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block title %}File Upload{% endblock %}
+{% block content %}
+<link href="{% static 'code_scan/file_upload.css' %}" rel="stylesheet" type="text/css" />
+<div class="col-md-12">
+    <form enctype="multipart/form-data" action="" method="post" >
+    {% csrf_token %}
+        <div class="form-group text-center">
+            <div class="upload-btn-wrapper col-md-12">
+                <span>Upload Scan Files</span>
+              <input type="file" name="scan_files" id="id_scan_files" multiple />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group text-left">
+            <div id="selectedFiles"></div>
+        </div>
+        <div class="form-group">
+            <div id="progress-wrapper">
+              <a id="progress-bar-trigger">Run</a>
+              <div id="progress-bar" style="background-color: blue; width: 0%;">&nbsp;</div>
+              <div id="progress-bar-message">Waiting for progress to start...</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-outline-primary col-md-12" />
+        </div>
+    </form>
+</div>
+
+<script src="{% static "code_scan/file_list.js" %}"></script>
+{% endblock %}
