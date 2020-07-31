@@ -23,20 +23,21 @@ function handleFileSelect(e) {
 
 }
 
-function updateProgress(progressBarElement, progressBarMessageElement, progress) {
-  progressBarElement.style.width = progress.percent + "%";
-  progressBarMessageElement.innerHTML = progress.current + ' of ' + progress.total + ' processed.';
-}
-
-var trigger = document.getElementById('progress-bar-trigger');
-trigger.addEventListener('click', function(e) {
-  var bar = document.getElementById("progress-bar");
-  var barMessage = document.getElementById("progress-bar-message");
-  for (var i = 0; i < 11; i++) {
-    setTimeout(updateProgress, 500 * i, bar, barMessage, {
-      percent: 10 * i,
-      current: 10 * i,
-      total: 100
-    })
-  }
-})
+var frm = $('#scan-file-form');
+frm.submit(function () {
+    var frmData = new FormData(frm.get(0));
+    $.ajax({
+        type: frm.attr('method'),
+        url: frm.attr('action'),
+        data: frmData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (data) {
+            console.log("Something went wrong!");
+        }
+    });
+    return false;
+});

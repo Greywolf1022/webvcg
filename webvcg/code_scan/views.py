@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
 import os
+import json
 from .forms import FileUploadForm
 
 
@@ -23,6 +24,6 @@ def index(request):
         files = request.FILES.getlist('scan_files')
         for file in files:
             _handle_uploaded_file(file)
-
-        return HttpResponse('Have done! :)')
+        return HttpResponse(json.dumps({'task_id': 'Have done :)'}), content_type='application/json')
     return render(request, 'code_scan/index.html')
+

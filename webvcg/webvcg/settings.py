@@ -128,3 +128,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_URL = '/static/'
+
+# Celery Settings
+# CELERY_BROKER_URL = 'amqp://myuser:mypassword@localhost:5672/myvhost'
+# CELERY_RESULT_BACKEND = 'amqp://myuser:mypassword@localhost:5672/myvhost'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
